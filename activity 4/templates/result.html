@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+
+    {% for plot_path in plot_paths %}
+        <img src="data:image/png;base64,{{ plot_path }}" alt="Plot">
+    {% endfor %}
+
+    <h2>Test Results</h2>
+    {% for result in test_results %}
+        <p>Test Loss: {{ result[0] }}</p>
+        <p>Test Accuracy: {{ result[1] }}</p>
+    {% endfor %}
+</body>
+</html>
+
+
+
+
+
