@@ -42,9 +42,8 @@ class PreProcess_Data:
         ret_df = pd.DataFrame({'Image': imagefile, 'Labels': label})
         return imagefile, label, ret_df
 
-    def generate_train_test_images(self, imagefile, label):
+    def generate_train_test_images(self, imagefile, label, batch_size):
         project_df = pd.DataFrame({'Image': imagefile, 'Labels': label})
-        print(project_df)
         train, test = train_test_split(project_df, test_size=0.1)
 
         train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, validation_split=0.15)
@@ -58,7 +57,7 @@ class PreProcess_Data:
             target_size=(128, 128),
             color_mode="rgb",
             class_mode="categorical",
-            batch_size=32,
+            batch_size=batch_size,
             subset='training')
 
         test_generator = test_datagen.flow_from_dataframe(
@@ -69,8 +68,7 @@ class PreProcess_Data:
             target_size=(128, 128),
             color_mode="rgb",
             class_mode="categorical",
-            batch_size=32,
-            subset='validation')
+            batch_size=batch_size)
 
         validation_generator = train_datagen.flow_from_dataframe(
             train,
@@ -80,7 +78,7 @@ class PreProcess_Data:
             target_size=(128, 128),
             color_mode="rgb",
             class_mode="categorical",
-            batch_size=32,
+            batch_size=batch_size,
             subset='validation')
 
         print(f"Train images shape: {train.shape}")
