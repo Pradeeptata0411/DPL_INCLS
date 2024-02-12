@@ -7,6 +7,8 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.optimizers import SGD
 from keras.applications import VGG16
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import SimpleRNN, Reshape, Dense
 
 
 class DeepANN():
@@ -61,4 +63,13 @@ class DeepANN():
         model.add(Dense(128, activation=('relu')))
         model.add(Dense(2, activation=('softmax')))
         model.compile(loss="categorical_crossentropy", optimizer="sgd", metrics=["accuracy"])
+        return model
+
+    def Rnn_model(self,input_shape):
+        model = Sequential()
+        model.add(Reshape((input_shape[0] * input_shape[1], input_shape[2]), input_shape=input_shape))
+        model.add(SimpleRNN(units=128, activation='relu'))  # You can adjust units and activation function as needed
+        model.add(Dense(64, activation='relu'))  # Adding a Dense layer with 64 units and ReLU activation
+        model.add(Dense(10, activation='softmax'))  # Adding a Dense layer with 10 units and softmax activation
+        # You can add more Dense layers if needed
         return model
