@@ -12,7 +12,7 @@ import numpy as np
 
 class PreProcess_Data:
     def visualization_images(self, dir_path, nimages):
-        fig, axs = plt.subplots(4, 4, figsize=(10, 10))
+        fig, axs = plt.subplots(2, 2, figsize=(10, 10))
         dpath = dir_path
         count = 0
         for i in os.listdir(dpath):
@@ -55,7 +55,7 @@ class PreProcess_Data:
             directory='./',
             x_col="Image",
             y_col="Labels",
-            target_size=(28, 28),
+            target_size=(128, 128),
             color_mode="rgb",
             class_mode="categorical",
             batch_size=32,
@@ -66,7 +66,7 @@ class PreProcess_Data:
             directory='./',
             x_col="Image",
             y_col="Labels",
-            target_size=(28, 28),
+            target_size=(128, 128),
             color_mode="rgb",
             class_mode="categorical",
             batch_size=32,
@@ -77,7 +77,7 @@ class PreProcess_Data:
             directory='./',
             x_col="Image",
             y_col="Labels",
-            target_size=(28, 28),
+            target_size=(128, 128),
             color_mode="rgb",
             class_mode="categorical",
             batch_size=32,
